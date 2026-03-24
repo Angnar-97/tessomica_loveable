@@ -26,7 +26,7 @@ const HeroSection = () => {
           {`ATCGATCGATCG\nGCTAGCTAGCTA\nTTAAGGCCTTAA\nCCGGTTAAGGCC`}
         </motion.div>
         <motion.div
-          className="absolute bottom-32 right-10 font-mono text-xs text-accent/15 whitespace-pre leading-relaxed"
+          className="absolute bottom-32 right-10 font-mono text-xs text-accent/10 whitespace-pre leading-relaxed"
           animate={{ y: [10, -10, 10] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         >
