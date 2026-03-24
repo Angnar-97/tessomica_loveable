@@ -42,7 +42,7 @@ const HeroSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <p className="font-mono text-sm tracking-[0.3em] text-primary mb-6 uppercase">
-            Bioinformatics · Genomics · Environmental Science
+            Alejandro Navas González
           </p>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-tight">
             <span className="gradient-text">Decoding</span>{" "}
