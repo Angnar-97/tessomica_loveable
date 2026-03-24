@@ -14,20 +14,28 @@ const ContactSection = () => {
             Let's <span className="gradient-text">Collaborate</span>
           </h2>
           <p className="text-muted-foreground mb-10 leading-relaxed">
-            Interested in genomics-driven environmental solutions? Whether it's a research 
-            collaboration, consulting project, or just a conversation about microbiomes and 
-            sustainable mining — I'd love to connect.
+            Interested in genomics-driven environmental solutions, microbiome research, 
+            or data science collaborations? Whether it's a research project, consulting 
+            engagement, or just a conversation about bioinformatics — I'd love to connect.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:hello@example.com"
+              href="mailto:alejandronavasgonzalez6@gmail.com"
               className="px-8 py-3 bg-primary text-primary-foreground font-medium rounded-sm hover:opacity-90 transition-opacity"
             >
               Send an Email
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://github.com/weimar45"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary/10 transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/alexngs1997"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary/10 transition-colors"
@@ -35,6 +43,10 @@ const ContactSection = () => {
               LinkedIn
             </a>
           </div>
+
+          <p className="mt-8 text-sm text-muted-foreground font-mono">
+            Madrid, Spain · +34 629 492 487
+          </p>
         </motion.div>
       </div>
     </section>

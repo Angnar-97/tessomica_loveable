@@ -20,20 +20,22 @@ const AboutSection = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a bioinformatics researcher specializing in the intersection of genomics and 
-                environmental science. My work focuses on understanding complex biological systems 
-                through the lens of high-throughput sequencing data — from soil microbiome communities 
-                to plant transcriptomes.
+                I'm Alejandro Navas González, a Bioinformatician and Data Scientist based in Madrid, Spain. 
+                With a background in Biotechnology from Universidad Politécnica de Madrid, a Master's in 
+                Bioinformatics & Biostatistics, and a Master's in Big Data & Business Analytics, I bridge 
+                the gap between life sciences and advanced data analysis.
               </p>
               <p>
-                By applying computational approaches like RNA-seq differential expression analysis, 
-                metagenomic profiling, and phylogenetic reconstruction, I develop data-driven solutions 
-                for mining site remediation and crop improvement programs.
+                My bioinformatics experience at HelixBioS focused on microbiome analysis — developing 
+                network models and regression analyses using rhizosphere 16S rRNA samples to understand 
+                ecological interactions within microbial communities. I leverage tools like phyloseq, 
+                igraph, and vegan for comprehensive systems biology research.
               </p>
               <p>
-                My passion lies in translating raw sequencing data into actionable ecological 
-                insights that bridge the gap between molecular biology and real-world environmental 
-                challenges.
+                As a Data Scientist, I've applied machine learning, statistical modeling, and big data 
+                technologies (PySpark, Apache Hive) across industries. My passion lies in translating 
+                complex biological and environmental data into actionable insights for agriculture 
+                and sustainability.
               </p>
             </div>
           </div>
@@ -41,10 +43,10 @@ const AboutSection = () => {
           {/* Stats / Highlights */}
           <div className="grid grid-cols-2 gap-4">
             {[
-              { value: "16S/ITS", label: "Amplicon Sequencing" },
-              { value: "RNA-seq", label: "Transcriptomics" },
-              { value: "WGS", label: "Whole Genome Sequencing" },
-              { value: "Meta", label: "Metagenomics" },
+              { value: "MSc ×2", label: "Bioinformatics & Big Data" },
+              { value: "16S rRNA", label: "Microbiome Analysis" },
+              { value: "R & Python", label: "Full Stack Data Science" },
+              { value: "3.5+ yrs", label: "Professional Experience" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
