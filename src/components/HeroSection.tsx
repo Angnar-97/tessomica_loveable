@@ -19,7 +19,7 @@ const HeroSection = () => {
       {/* Floating DNA sequence decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 font-mono text-xs text-primary/20 whitespace-pre leading-relaxed"
+          className="absolute top-20 left-10 font-mono text-xs text-primary/15 whitespace-pre leading-relaxed"
           animate={{ y: [-10, 10, -10] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         >
