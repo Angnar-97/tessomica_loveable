@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="font-mono text-sm font-medium text-primary tracking-wider">
-          bio<span className="text-accent">.</span>portfolio
+          A<span className="text-accent">.</span>Navas
         </a>
 
         {/* Desktop */}
