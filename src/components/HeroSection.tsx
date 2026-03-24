@@ -11,9 +11,9 @@ const HeroSection = () => {
           alt="DNA helix with plant roots and genomic data"
           width={1920}
           height={1080}
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
 
       {/* Floating DNA sequence decoration */}
