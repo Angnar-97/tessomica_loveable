@@ -11,22 +11,22 @@ const HeroSection = () => {
           alt="DNA helix with plant roots and genomic data"
           width={1920}
           height={1080}
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
 
       {/* Floating DNA sequence decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 font-mono text-xs text-primary/20 whitespace-pre leading-relaxed"
+          className="absolute top-20 left-10 font-mono text-xs text-primary/15 whitespace-pre leading-relaxed"
           animate={{ y: [-10, 10, -10] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         >
           {`ATCGATCGATCG\nGCTAGCTAGCTA\nTTAAGGCCTTAA\nCCGGTTAAGGCC`}
         </motion.div>
         <motion.div
-          className="absolute bottom-32 right-10 font-mono text-xs text-accent/15 whitespace-pre leading-relaxed"
+          className="absolute bottom-32 right-10 font-mono text-xs text-accent/10 whitespace-pre leading-relaxed"
           animate={{ y: [10, -10, 10] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         >
