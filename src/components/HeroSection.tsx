@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
-import profilePhoto from "@/assets/profile-photo.png";
 
 const HeroSection = () => {
   return (
@@ -42,31 +41,19 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          {/* Profile photo */}
-          <div className="mb-8 flex justify-center">
-            <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-primary/30 border-glow">
-              <img
-                src={profilePhoto}
-                alt="Alejandro Navas González"
-                width={128}
-                height={128}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
           <p className="font-mono text-sm tracking-[0.3em] text-primary mb-6 uppercase">
-            Bioinformatics · Data Science · Genomics
+            Bioinformatics · Genomics · Environmental Science
           </p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-4 leading-tight">
-            <span className="text-foreground">Alejandro</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-tight">
+            <span className="gradient-text">Decoding</span>{" "}
+            <span className="text-foreground">Nature's</span>
             <br />
-            <span className="gradient-text">Navas González</span>
+            <span className="text-foreground">Blueprint</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 font-body leading-relaxed">
-            Bioinformatician & Data Scientist combining advanced analytical techniques 
-            with deep life sciences and agriculture domain knowledge — from microbiome 
-            analysis to sustainable crop improvement.
+            Leveraging genomics, metagenomics, and computational biology to unlock the
+            hidden potential of plant and soil microbiomes — from mining remediation
+            to sustainable agriculture.
           </p>
         </motion.div>
 

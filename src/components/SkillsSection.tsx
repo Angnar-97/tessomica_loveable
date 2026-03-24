@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 const skillCategories = [
   {
     title: "Sequencing & Analysis",
-    skills: ["16S/ITS Amplicon", "RNA-seq", "Metagenomics", "Microbiome Ecology", "Phylogenetics", "Computational Genomics"],
+    skills: ["16S/ITS Amplicon", "RNA-seq", "Whole Genome Sequencing", "Shotgun Metagenomics", "ChIP-seq", "Variant Calling"],
   },
   {
-    title: "R Ecosystem",
-    skills: ["phyloseq", "tidyverse / ggplot2", "caret / H2O", "igraph / vegan", "Shiny / RMarkdown", "Bioconductor"],
+    title: "Bioinformatics Tools",
+    skills: ["QIIME2", "MetaSPAdes", "HISAT2/STAR", "DESeq2/edgeR", "PROKKA", "HUMAnN3", "Trimmomatic", "FastQC"],
   },
   {
-    title: "Python & Big Data",
-    skills: ["pandas / NumPy / SciPy", "scikit-learn / TensorFlow", "PySpark", "matplotlib / seaborn", "Biopython", "Apache Hive"],
+    title: "Programming & Data",
+    skills: ["R / Bioconductor", "Python / Biopython", "Bash Scripting", "Snakemake / Nextflow", "ggplot2", "Pandas / NumPy"],
   },
   {
-    title: "Tools & Platforms",
-    skills: ["QIIME2 / USEARCH", "MySQL / PowerBI / Tableau", "LaTeX", "Snakemake / Nextflow", "Git / GitHub", "Julia"],
+    title: "Ecology & Applications",
+    skills: ["Microbiome Ecology", "Phytoremediation", "Soil Science", "Crop Genomics", "Phylogenetics", "Statistical Modeling"],
   },
 ];
 
