@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
-const links = [
+const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About Me", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
+  { label: "Publicaciones", href: "/publicaciones", isRoute: true },
   { label: "Contact", href: "#contact" },
 ];
 
