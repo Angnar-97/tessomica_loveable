@@ -120,6 +120,14 @@ const ExperienceSection = () => (
                 <p className="text-sm text-muted-foreground mb-1">{exp.period}</p>
                 <p className="text-sm text-muted-foreground/70 mb-3">{exp.location}</p>
 
+                <ul className="space-y-1.5 mb-4">
+                  {exp.description.map((item, j) => (
+                    <li key={j} className="text-sm text-foreground/80 flex gap-2">
+                      <span className="text-primary mt-1 shrink-0">▸</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
                 <div className="flex flex-wrap gap-1.5">
                   {exp.skills.map((skill) => (
                     <span
