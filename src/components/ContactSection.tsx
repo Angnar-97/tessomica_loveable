@@ -34,6 +34,14 @@ const ContactSection = () => {
             >
               GitHub
             </a>
+            <a
+              href="https://www.linkedin.com/in/alexngs1997/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary/10 transition-colors"
+            >
+              LinkedIn
+            </a>
           </div>
         </motion.div>
       </div>
