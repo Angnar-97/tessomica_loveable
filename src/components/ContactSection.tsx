@@ -21,18 +21,18 @@ const ContactSection = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:hello@example.com"
+              href="mailto:alejandronavasgonzalez6@gmail.com"
               className="px-8 py-3 bg-primary text-primary-foreground font-medium rounded-sm hover:opacity-90 transition-opacity"
             >
               Send an Email
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://github.com/Angnar-97"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 border border-primary/30 text-primary rounded-sm hover:bg-primary/10 transition-colors"
             >
-              LinkedIn
+              GitHub
             </a>
           </div>
         </motion.div>
