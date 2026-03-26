@@ -14,7 +14,7 @@ const Publications = () => (
           animate={{ opacity: 1, y: 0 }}
           className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4"
         >
-          Publicaciones
+          Publications
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ const Publications = () => (
           transition={{ delay: 0.1 }}
           className="text-muted-foreground mb-12 max-w-2xl"
         >
-          Proyectos y trabajos publicados en GitHub — análisis, pipelines y herramientas de datos.
+          Projects and work published on GitHub — analyses, pipelines, and data tools.
         </motion.p>
 
         <div className="space-y-6">
@@ -42,7 +42,7 @@ const Publications = () => (
                     {pub.title}
                   </h2>
                   <span className="text-xs font-mono text-muted-foreground shrink-0">
-                    {new Date(pub.date).toLocaleDateString("es-ES", {
+                    {new Date(pub.date).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
                     })}
@@ -66,7 +66,7 @@ const Publications = () => (
 
         {publications.length === 0 && (
           <p className="text-muted-foreground text-center py-20">
-            Próximamente — trabajos en desarrollo.
+            Coming soon — work in progress.
           </p>
         )}
       </div>

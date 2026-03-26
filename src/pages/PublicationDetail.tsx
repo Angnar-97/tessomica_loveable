@@ -81,7 +81,7 @@ const PublicationDetail = () => {
             to="/publicaciones"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
           >
-            ← Volver a Publicaciones
+            ← Back to Publications
           </Link>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -91,7 +91,7 @@ const PublicationDetail = () => {
 
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <span className="text-sm text-muted-foreground font-mono">
-                {new Date(pub.date).toLocaleDateString("es-ES", {
+                {new Date(pub.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -103,7 +103,7 @@ const PublicationDetail = () => {
                 rel="noopener noreferrer"
                 className="text-sm text-primary hover:underline font-mono"
               >
-                Ver en GitHub →
+                View on GitHub →
               </a>
             </div>
 

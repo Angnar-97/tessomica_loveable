@@ -2,68 +2,68 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    role: "Científico de Datos",
+    role: "Data Scientist",
     company: "Telómera",
-    type: "Jornada completa",
-    period: "oct. 2024 – actualidad",
-    location: "Madrid, España · Presencial",
+    type: "Full-time",
+    period: "Oct 2024 – Present",
+    location: "Madrid, Spain · On-site",
     description: [
-      "Desarrollo de modelos predictivos y pipelines de análisis de datos aplicados al sector biotecnológico y de salud.",
-      "Diseño e implementación de soluciones de inteligencia de datos para la toma de decisiones basada en evidencia.",
-      "Análisis exploratorio de datos clínicos y genómicos mediante técnicas de Machine Learning y bioestadística.",
+      "Development of predictive models and data analysis pipelines applied to the biotech and healthcare sectors.",
+      "Design and implementation of data intelligence solutions to support evidence-based decision-making.",
+      "Exploratory analysis of clinical and genomic data using Machine Learning and biostatistics techniques.",
     ],
-    skills: ["Inteligencia de datos", "Análisis exploratorio de datos", "Machine Learning", "Python", "Bioestadística"],
+    skills: ["Data Intelligence", "Exploratory Data Analysis", "Machine Learning", "Python", "Biostatistics"],
     current: true,
   },
   {
-    role: "Científico de Datos",
+    role: "Data Scientist",
     company: "Intrum",
-    type: "Jornada completa",
-    period: "abr. 2022 – oct. 2024 · 2 años 7 meses",
-    location: "Madrid, España",
+    type: "Full-time",
+    period: "Apr 2022 – Oct 2024 · 2 yrs 7 mos",
+    location: "Madrid, Spain",
     description: [
-      "Construcción de modelos estadísticos y de Machine Learning para la predicción de comportamiento de deuda y scoring de clientes.",
-      "Desarrollo de dashboards interactivos en Power BI para la monitorización de KPIs y reporting ejecutivo.",
-      "Automatización de procesos ETL y pipelines de datos con R y SQL para el procesamiento de grandes volúmenes de información financiera.",
+      "Built statistical and Machine Learning models for debt behavior prediction and customer scoring.",
+      "Developed interactive Power BI dashboards for KPI monitoring and executive reporting.",
+      "Automated ETL processes and data pipelines with R and SQL to handle large volumes of financial data.",
     ],
-    skills: ["R", "Microsoft Power BI", "SQL", "Modelado estadístico", "ETL", "Análisis de datos", "Machine Learning"],
+    skills: ["R", "Microsoft Power BI", "SQL", "Statistical Modeling", "ETL", "Data Analysis", "Machine Learning"],
   },
   {
-    role: "Científico de Datos",
+    role: "Data Scientist",
     company: "CGI",
-    type: "Jornada completa",
-    period: "sept. 2021 – abr. 2022 · 8 meses",
-    location: "Madrid, España",
+    type: "Full-time",
+    period: "Sep 2021 – Apr 2022 · 8 mos",
+    location: "Madrid, Spain",
     description: [
-      "Diseño y desarrollo de pipelines de procesamiento de datos a gran escala con PySpark en entornos Big Data.",
-      "Extracción, transformación y análisis de datos mediante SQL y Python para proyectos de consultoría tecnológica.",
+      "Designed and developed large-scale data processing pipelines with PySpark in Big Data environments.",
+      "Performed data extraction, transformation, and analysis using SQL and Python for technology consulting projects.",
     ],
     skills: ["PySpark", "SQL", "Python", "Big Data"],
   },
   {
-    role: "Asesor de TI",
+    role: "IT Consultant",
     company: "M2C – An Ayesa Company",
-    type: "Jornada completa",
-    period: "mar. 2021 – sept. 2021 · 7 meses",
-    location: "Madrid, España",
+    type: "Full-time",
+    period: "Mar 2021 – Sep 2021 · 7 mos",
+    location: "Madrid, Spain",
     description: [
-      "Consultoría e implementación de soluciones BPM con la plataforma Pega (PRPC) para la automatización de procesos empresariales.",
-      "Participación en el diseño de arquitectura de sistemas y flujos de trabajo para clientes del sector financiero.",
+      "Consulting and implementation of BPM solutions using the Pega (PRPC) platform for enterprise process automation.",
+      "Contributed to system architecture design and workflow definition for financial sector clients.",
     ],
-    skills: ["PRPC de Pegasystems", "Arquitectura de sistemas"],
+    skills: ["Pegasystems PRPC", "System Architecture"],
   },
   {
-    role: "Bioinformático",
+    role: "Bioinformatician",
     company: "Helix BioS",
-    type: "Contrato de prácticas",
-    period: "feb. 2020 – jul. 2020 · 6 meses",
-    location: "Madrid, España",
+    type: "Internship",
+    period: "Feb 2020 – Jul 2020 · 6 mos",
+    location: "Madrid, Spain",
     description: [
-      "Análisis de datos de secuenciación de nueva generación (NGS) para estudios de metagenómica y diversidad microbiana.",
-      "Desarrollo de pipelines bioinformáticos con R (Phyloseq) y QIIME2 para el procesamiento y visualización de datos de amplicones 16S.",
-      "Caracterización taxonómica y funcional de comunidades microbianas a partir de datos de secuenciación del ADN.",
+      "Analyzed Next-Generation Sequencing (NGS) data for metagenomics and microbial diversity studies.",
+      "Developed bioinformatics pipelines with R (Phyloseq) and QIIME2 for processing and visualizing 16S amplicon data.",
+      "Performed taxonomic and functional characterization of microbial communities from DNA sequencing data.",
     ],
-    skills: ["Análisis de secuencias", "Secuenciación del ADN", "NGS", "Bioinformática", "R", "Python", "Phyloseq", "QIIME2"],
+    skills: ["Sequence Analysis", "DNA Sequencing", "NGS", "Bioinformatics", "R", "Python", "Phyloseq", "QIIME2"],
   },
 ];
 const ExperienceSection = () => (
@@ -75,7 +75,7 @@ const ExperienceSection = () => (
         viewport={{ once: true }}
         className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-16 text-center"
       >
-        Experiencia Profesional
+        Professional Experience
       </motion.h2>
 
       <div className="relative">
@@ -112,7 +112,7 @@ const ExperienceSection = () => (
                   </div>
                   {exp.current && (
                     <span className="text-xs font-mono bg-primary/10 text-primary px-2 py-1 rounded-full w-fit">
-                      Actual
+                      Current
                     </span>
                   )}
                 </div>
