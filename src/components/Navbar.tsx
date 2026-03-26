@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -14,6 +14,15 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleAnchorClick = (e: React.MouseEvent, href: string) => {
+    if (location.pathname !== "/") {
+      e.preventDefault();
+      navigate("/" + href);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -37,6 +46,7 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleAnchorClick(e, link.href)}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
@@ -85,7 +95,10 @@ const Navbar = () => {
                   <a
                     key={link.href}
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => {
+                      handleAnchorClick(e, link.href);
+                      setOpen(false);
+                    }}
                     className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.label}
