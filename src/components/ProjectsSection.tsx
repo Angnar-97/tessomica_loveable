@@ -86,7 +86,7 @@ const ProjectsSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="space-y-20"
+            className="space-y-12 sm:space-y-20"
           >
             {filtered.map((project, i) => (
               <motion.div
@@ -107,7 +107,7 @@ const ProjectsSection = () => {
                       loading="lazy"
                       width={800}
                       height={600}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-48 sm:h-64 object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                   </div>

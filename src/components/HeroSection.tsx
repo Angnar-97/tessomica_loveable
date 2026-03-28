@@ -16,8 +16,8 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
 
-      {/* Floating DNA sequence decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Floating DNA sequence decoration - hidden on small screens */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
         <motion.div
           className="absolute top-20 left-10 font-mono text-xs text-primary/15 whitespace-pre leading-relaxed"
           animate={{ y: [-10, 10, -10] }}
@@ -35,7 +35,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
+      <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,13 +44,13 @@ const HeroSection = () => {
           <p className="font-mono text-sm tracking-[0.3em] text-primary mb-6 uppercase">
             Alejandro Navas González
           </p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-4 sm:mb-6 leading-tight">
             <span className="gradient-text">Decoding</span>{" "}
             <span className="text-foreground">Nature's</span>
             <br />
             <span className="text-foreground">Blueprint</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 font-body leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 font-body leading-relaxed">
             Leveraging genomics, metagenomics, and computational biology to unlock the
             hidden potential of plant and soil microbiomes — from mining remediation
             to sustainable agriculture.

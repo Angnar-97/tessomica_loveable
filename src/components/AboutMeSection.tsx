@@ -20,7 +20,7 @@ const AboutMeSection = () => {
             Data Scientist & Bioinformatician
           </p>
 
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16">
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 Bioinformatician & Data Scientist combining advanced analytical techniques with 
@@ -52,10 +52,10 @@ const AboutMeSection = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-card p-5 rounded-sm border-glow border border-border flex items-center gap-4"
+                  className="bg-card p-4 sm:p-5 rounded-sm border-glow border border-border flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4"
                 >
-                  <p className="font-mono text-lg font-bold text-primary min-w-[130px]">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                  <p className="font-mono text-base sm:text-lg font-bold text-primary sm:min-w-[130px]">{stat.value}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
                 </motion.div>
               ))}
 
