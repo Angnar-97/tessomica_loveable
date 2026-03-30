@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import logoImg from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -29,7 +30,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 font-mono text-sm font-medium text-primary tracking-wider">
-          <img src="/favicon.png" alt="tess.omica logo" className="h-6 w-6" />
+          <img src={logoImg} alt="tess.omica logo" className="h-7 w-7" />
           tess.omica
         </Link>
 
