@@ -72,7 +72,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <div className="md:hidden flex items-center gap-3">
+        <div className="lg:hidden flex items-center gap-3">
           <ThemeToggle />
           <button
             onClick={() => setOpen(!open)}
