@@ -1,9 +1,68 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
+const dnaColumns = [
+  {
+    text: "A T C G A T C G\nG C T A G C T A\nT T A A G G C C\nA T G C T G A C\nC G T T A A G G\nG G C C T T A A\nA T C G A T C G\nT A G C T A G C",
+    className: "top-[5%] left-[4%] text-[9px] md:text-[11px] text-primary/[0.06] tracking-widest",
+    animate: { y: [0, -40, 0] },
+    duration: 24,
+    parallaxSpeed: 0.3,
+  },
+  {
+    text: "G C T A\nA T C G\nT T A A\nG G C C\nC G T T\nA T G C",
+    className: "top-[18%] left-[22%] text-[8px] md:text-[10px] text-accent/[0.05] tracking-[0.3em]",
+    animate: { y: [15, -30, 15] },
+    duration: 20,
+    parallaxSpeed: 0.15,
+  },
+  {
+    text: "A  T  C  G\nC  G  A  T\nT  A  G  C\nG  C  T  A",
+    className: "top-[35%] left-[42%] text-[7px] md:text-[9px] text-primary/[0.04] tracking-[0.5em]",
+    animate: { y: [-10, 20, -10], opacity: [0.3, 0.6, 0.3] },
+    duration: 28,
+    parallaxSpeed: 0.1,
+  },
+  {
+    text: "T A G C\nC G A T\nA T C G\nG C T A\nT T A A\nG G C C",
+    className: "top-[12%] right-[20%] text-[8px] md:text-[10px] text-accent/[0.05] tracking-[0.25em]",
+    animate: { y: [-20, 25, -20] },
+    duration: 22,
+    parallaxSpeed: 0.25,
+  },
+  {
+    text: "C G T T A A\nG G C C T T\nA T C G A T\nG C T A G C\nT T A A G G\nC C G G T T\nA T G C T G",
+    className: "top-[3%] right-[3%] text-[9px] md:text-[11px] text-primary/[0.05] tracking-widest",
+    animate: { y: [10, -35, 10] },
+    duration: 26,
+    parallaxSpeed: 0.35,
+  },
+  {
+    text: "A T C G A T C G A T\nT A G C T A G C T A\nC G A T C G A T C G",
+    className: "bottom-[18%] left-[10%] text-[7px] md:text-[9px] text-primary/[0.04] tracking-[0.4em]",
+    animate: { x: [-8, 12, -8], y: [5, -10, 5] },
+    duration: 32,
+    parallaxSpeed: 0.2,
+  },
+  {
+    text: ">rRNA_16S\nATGCTGACCGTT\n>ITS_region\nGGCCTTAAGGCC",
+    className: "bottom-[22%] right-[6%] text-[8px] md:text-[10px] text-accent/[0.04] tracking-[0.2em]",
+    animate: { y: [12, -18, 12], x: [4, -4, 4] },
+    duration: 30,
+    parallaxSpeed: 0.28,
+  },
+];
+
 const HeroSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -16,73 +75,14 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
 
-      {/* Floating DNA sequences — spread across the entire hero */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
-        {/* Left column — slow upward drift */}
-        <motion.div
-          className="absolute top-0 left-[5%] font-mono text-[10px] md:text-xs text-primary/10 whitespace-pre leading-loose tracking-widest"
-          animate={{ y: [0, -60, 0] }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {`A T C G A T C G\nG C T A G C T A\nT T A A G G C C\nA T G C T G A C\nC G T T A A G G\nG G C C T T A A\nA T C G A T C G\nT A G C T A G C\nC C G G T T A A\nA T G C T G A C`}
-        </motion.div>
-
-        {/* Center-left — medium drift */}
-        <motion.div
-          className="absolute top-[15%] left-[25%] font-mono text-[9px] md:text-[11px] text-accent/8 whitespace-pre leading-loose tracking-[0.25em]"
-          animate={{ y: [20, -40, 20] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {`G C T A\nA T C G\nT T A A\nG G C C\nC G T T\nA T G C\nG C T A\nT A G C`}
-        </motion.div>
-
-        {/* Center — slow pulse drift */}
-        <motion.div
-          className="absolute top-[30%] left-[45%] font-mono text-[8px] md:text-[10px] text-primary/6 whitespace-pre leading-loose tracking-[0.4em]"
-          animate={{ y: [-15, 25, -15], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {`A  T  C  G\nC  G  A  T\nT  A  G  C\nG  C  T  A\nA  T  C  G\nC  G  A  T`}
-        </motion.div>
-
-        {/* Center-right — downward drift */}
-        <motion.div
-          className="absolute top-[10%] right-[22%] font-mono text-[9px] md:text-[11px] text-accent/7 whitespace-pre leading-loose tracking-[0.3em]"
-          animate={{ y: [-30, 30, -30] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {`T A G C\nC G A T\nA T C G\nG C T A\nT T A A\nG G C C\nA T G C\nC G T T`}
-        </motion.div>
-
-        {/* Right column — slow upward */}
-        <motion.div
-          className="absolute top-[5%] right-[3%] font-mono text-[10px] md:text-xs text-primary/8 whitespace-pre leading-loose tracking-widest"
-          animate={{ y: [10, -50, 10] }}
-          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {`C G T T A A\nG G C C T T\nA T C G A T\nG C T A G C\nT T A A G G\nC C G G T T\nA T G C T G\nG C T A G C\nA T C G A T\nT A G C T A`}
-        </motion.div>
-
-        {/* Bottom left — slow horizontal sway */}
-        <motion.div
-          className="absolute bottom-[15%] left-[12%] font-mono text-[8px] md:text-[10px] text-primary/5 whitespace-pre leading-loose tracking-[0.5em]"
-          animate={{ x: [-10, 15, -10], y: [5, -15, 5] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {`A T C G A T C G A T\nT A G C T A G C T A\nC G A T C G A T C G\nG C T A G C T A G C`}
-        </motion.div>
-
-        {/* Bottom right — gentle float */}
-        <motion.div
-          className="absolute bottom-[20%] right-[8%] font-mono text-[9px] md:text-[11px] text-accent/6 whitespace-pre leading-loose tracking-[0.2em]"
-          animate={{ y: [15, -25, 15], x: [5, -5, 5] }}
-          transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {`>rRNA_16S\nATGCTGACCGTT\n>ITS_region\nGGCCTTAAGGCC\n>rbcL_marker\nCGTTAAGGCCTT\n>matK_gene\nATCGATCGATCG`}
-        </motion.div>
+      {/* Floating DNA sequences with parallax — z-0 keeps them behind content */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 hidden sm:block">
+        {dnaColumns.map((col, i) => (
+          <ParallaxDNA key={i} col={col} scrollYProgress={scrollYProgress} />
+        ))}
       </div>
 
-      {/* Content */}
+      {/* Content — z-10 stays above DNA */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -128,7 +128,7 @@ const HeroSection = () => {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
@@ -137,6 +137,27 @@ const HeroSection = () => {
         </div>
       </motion.div>
     </section>
+  );
+};
+
+interface ParallaxDNAProps {
+  col: (typeof dnaColumns)[number];
+  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+}
+
+const ParallaxDNA = ({ col, scrollYProgress }: ParallaxDNAProps) => {
+  const y = useTransform(scrollYProgress, [0, 1], [0, -200 * col.parallaxSpeed]);
+
+  return (
+    <motion.div style={{ y }}>
+      <motion.div
+        className={`absolute font-mono whitespace-pre leading-loose ${col.className}`}
+        animate={col.animate}
+        transition={{ duration: col.duration, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {col.text}
+      </motion.div>
+    </motion.div>
   );
 };
 
