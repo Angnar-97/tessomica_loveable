@@ -16,21 +16,69 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
 
-      {/* Floating DNA sequence decoration - hidden on small screens */}
+      {/* Floating DNA sequences — spread across the entire hero */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
+        {/* Left column — slow upward drift */}
         <motion.div
-          className="absolute top-20 left-10 font-mono text-xs text-primary/15 whitespace-pre leading-relaxed"
-          animate={{ y: [-10, 10, -10] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 left-[5%] font-mono text-[10px] md:text-xs text-primary/10 whitespace-pre leading-loose tracking-widest"
+          animate={{ y: [0, -60, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         >
-          {`ATCGATCGATCG\nGCTAGCTAGCTA\nTTAAGGCCTTAA\nCCGGTTAAGGCC`}
+          {`A T C G A T C G\nG C T A G C T A\nT T A A G G C C\nA T G C T G A C\nC G T T A A G G\nG G C C T T A A\nA T C G A T C G\nT A G C T A G C\nC C G G T T A A\nA T G C T G A C`}
         </motion.div>
+
+        {/* Center-left — medium drift */}
         <motion.div
-          className="absolute bottom-32 right-10 font-mono text-xs text-accent/10 whitespace-pre leading-relaxed"
-          animate={{ y: [10, -10, 10] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[15%] left-[25%] font-mono text-[9px] md:text-[11px] text-accent/8 whitespace-pre leading-loose tracking-[0.25em]"
+          animate={{ y: [20, -40, 20] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         >
-          {`>seq_001 Rhizobium\nATGCTGACCGTT\n>seq_002 Mycorrhiza\nGGCCTTAAGGCC`}
+          {`G C T A\nA T C G\nT T A A\nG G C C\nC G T T\nA T G C\nG C T A\nT A G C`}
+        </motion.div>
+
+        {/* Center — slow pulse drift */}
+        <motion.div
+          className="absolute top-[30%] left-[45%] font-mono text-[8px] md:text-[10px] text-primary/6 whitespace-pre leading-loose tracking-[0.4em]"
+          animate={{ y: [-15, 25, -15], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {`A  T  C  G\nC  G  A  T\nT  A  G  C\nG  C  T  A\nA  T  C  G\nC  G  A  T`}
+        </motion.div>
+
+        {/* Center-right — downward drift */}
+        <motion.div
+          className="absolute top-[10%] right-[22%] font-mono text-[9px] md:text-[11px] text-accent/7 whitespace-pre leading-loose tracking-[0.3em]"
+          animate={{ y: [-30, 30, -30] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {`T A G C\nC G A T\nA T C G\nG C T A\nT T A A\nG G C C\nA T G C\nC G T T`}
+        </motion.div>
+
+        {/* Right column — slow upward */}
+        <motion.div
+          className="absolute top-[5%] right-[3%] font-mono text-[10px] md:text-xs text-primary/8 whitespace-pre leading-loose tracking-widest"
+          animate={{ y: [10, -50, 10] }}
+          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {`C G T T A A\nG G C C T T\nA T C G A T\nG C T A G C\nT T A A G G\nC C G G T T\nA T G C T G\nG C T A G C\nA T C G A T\nT A G C T A`}
+        </motion.div>
+
+        {/* Bottom left — slow horizontal sway */}
+        <motion.div
+          className="absolute bottom-[15%] left-[12%] font-mono text-[8px] md:text-[10px] text-primary/5 whitespace-pre leading-loose tracking-[0.5em]"
+          animate={{ x: [-10, 15, -10], y: [5, -15, 5] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {`A T C G A T C G A T\nT A G C T A G C T A\nC G A T C G A T C G\nG C T A G C T A G C`}
+        </motion.div>
+
+        {/* Bottom right — gentle float */}
+        <motion.div
+          className="absolute bottom-[20%] right-[8%] font-mono text-[9px] md:text-[11px] text-accent/6 whitespace-pre leading-loose tracking-[0.2em]"
+          animate={{ y: [15, -25, 15], x: [5, -5, 5] }}
+          transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {`>rRNA_16S\nATGCTGACCGTT\n>ITS_region\nGGCCTTAAGGCC\n>rbcL_marker\nCGTTAAGGCCTT\n>matK_gene\nATCGATCGATCG`}
         </motion.div>
       </div>
 
