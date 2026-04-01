@@ -97,7 +97,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-border"
+            className="lg:hidden bg-background border-b border-border"
           >
             <div className="px-6 py-4 space-y-3">
               {navLinks.map((link) =>
