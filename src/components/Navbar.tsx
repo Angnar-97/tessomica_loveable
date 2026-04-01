@@ -35,7 +35,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) =>
             link.isRoute ? (
               <Link
@@ -72,7 +72,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <div className="md:hidden flex items-center gap-3">
+        <div className="lg:hidden flex items-center gap-3">
           <ThemeToggle />
           <button
             onClick={() => setOpen(!open)}
@@ -97,7 +97,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-border"
+            className="lg:hidden bg-background border-b border-border"
           >
             <div className="px-6 py-4 space-y-3">
               {navLinks.map((link) =>
