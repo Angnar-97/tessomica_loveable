@@ -4,16 +4,16 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 // Horizontal DNA streams — Matrix-style flowing sequences
 const dnaStreams = [
-  { y: "6%", speed: 18, delay: 0, opacity: 0.07, text: "ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG", parallax: 0.3 },
-  { y: "14%", speed: 25, delay: -5, opacity: 0.05, text: "GCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTA", parallax: 0.15 },
-  { y: "24%", speed: 22, delay: -10, opacity: 0.06, text: "TTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCC", parallax: 0.25 },
-  { y: "38%", speed: 30, delay: -3, opacity: 0.04, text: "ATGCTGACATGCTGACATGCTGACATGCTGACATGCTGACATGCTGACATGCTGAC", parallax: 0.1 },
-  { y: "52%", speed: 20, delay: -8, opacity: 0.06, text: "CGTTAGGCCGTTAGGCCGTTAGGCCGTTAGGCCGTTAGGCCGTTAGGCCGTTAGGC", parallax: 0.35 },
-  { y: "64%", speed: 28, delay: -12, opacity: 0.05, text: "GGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAA", parallax: 0.2 },
-  { y: "76%", speed: 24, delay: -6, opacity: 0.04, text: ">rRNA_16S ATGCTGACCGTT >ITS_region GGCCTTAAGGCC >matK ATCGATCGATCG", parallax: 0.28 },
-  { y: "85%", speed: 32, delay: -15, opacity: 0.05, text: "TAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGC", parallax: 0.18 },
-  { y: "44%", speed: 26, delay: -9, opacity: 0.04, text: "AATTCCGGAATTCCGGAATTCCGGAATTCCGGAATTCCGGAATTCCGGAATTCCGG", parallax: 0.22 },
-  { y: "92%", speed: 21, delay: -4, opacity: 0.05, text: "GCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCAT", parallax: 0.12 },
+  { y: "5%", speed: 35, delay: 0, opacity: 0.12, text: "ATCGATCG ATGCTGAC TTAAGGCC CGTTAGGC ATCGATCG GCTAGCTA ATGCTGAC", parallax: 0.3, dir: "left" },
+  { y: "14%", speed: 48, delay: -7, opacity: 0.08, text: "GCTAGCTA GGCCTTAA AATTCCGG GCATGCAT TAGCTAGC ATCGATCG TTAAGGCC", parallax: 0.15, dir: "right" },
+  { y: "24%", speed: 28, delay: -3, opacity: 0.10, text: "TTAAGGCC ATGCTGAC CGTTAGGC GCTAGCTA AATTCCGG TTAAGGCC ATCGATCG", parallax: 0.25, dir: "left" },
+  { y: "36%", speed: 55, delay: -12, opacity: 0.07, text: ">rRNA_16S ATGCTGACCGTT  >ITS_region GGCCTTAAGGCC  >matK_gene ATCGATCGATCG", parallax: 0.1, dir: "right" },
+  { y: "48%", speed: 32, delay: -5, opacity: 0.11, text: "CGTTAGGC ATCGATCG GCTAGCTA TTAAGGCC ATGCTGAC AATTCCGG GCATGCAT", parallax: 0.35, dir: "left" },
+  { y: "60%", speed: 42, delay: -18, opacity: 0.09, text: "GGCCTTAA TAGCTAGC ATCGATCG CGTTAGGC ATGCTGAC GCTAGCTA TTAAGGCC", parallax: 0.2, dir: "right" },
+  { y: "72%", speed: 25, delay: -9, opacity: 0.10, text: "AATTCCGG GCATGCAT ATCGATCG TTAAGGCC GCTAGCTA CGTTAGGC ATGCTGAC", parallax: 0.28, dir: "left" },
+  { y: "82%", speed: 60, delay: -15, opacity: 0.07, text: "TAGCTAGC GGCCTTAA AATTCCGG GCATGCAT ATCGATCG TTAAGGCC CGTTAGGC", parallax: 0.18, dir: "right" },
+  { y: "42%", speed: 38, delay: -22, opacity: 0.08, text: "GCATGCAT ATGCTGAC CGTTAGGC TTAAGGCC GCTAGCTA AATTCCGG TAGCTAGC", parallax: 0.22, dir: "left" },
+  { y: "90%", speed: 45, delay: -10, opacity: 0.09, text: "ATGCTGAC GCTAGCTA TTAAGGCC ATCGATCG GGCCTTAA CGTTAGGC AATTCCGG", parallax: 0.12, dir: "right" },
 ];
 
 const HeroSection = () => {
@@ -116,8 +116,9 @@ interface DNAStreamProps {
 const DNAStream = ({ stream, scrollYProgress }: DNAStreamProps) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -150 * stream.parallax]);
 
-  // Double the text so it can loop seamlessly
-  const doubledText = useMemo(() => `${stream.text}   ${stream.text}   ${stream.text}`, [stream.text]);
+  const doubledText = useMemo(() => `${stream.text}    ${stream.text}    ${stream.text}`, [stream.text]);
+
+  const goesRight = stream.dir === "right";
 
   return (
     <motion.div
@@ -125,9 +126,9 @@ const DNAStream = ({ stream, scrollYProgress }: DNAStreamProps) => {
       style={{ top: stream.y, y }}
     >
       <motion.div
-        className="font-mono whitespace-nowrap tracking-[0.35em] text-[10px] md:text-[12px]"
+        className="font-mono whitespace-nowrap tracking-[0.3em] text-[10px] md:text-[12px]"
         style={{ opacity: stream.opacity, color: "hsl(var(--primary))" }}
-        animate={{ x: ["0%", "-33.33%"] }}
+        animate={{ x: goesRight ? ["-33.33%", "0%"] : ["0%", "-33.33%"] }}
         transition={{
           x: {
             duration: stream.speed,
