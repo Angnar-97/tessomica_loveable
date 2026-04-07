@@ -164,9 +164,9 @@ const DNAStream = ({ stream, scrollYProgress, index }: DNAStreamProps) => {
             className="inline-block animate-pulse"
             style={{
               color: "hsl(var(--primary))",
-              opacity: 1,
-              textShadow: "0 0 8px hsl(var(--primary) / 0.8), 0 0 16px hsl(var(--primary) / 0.4)",
-              transition: "all 0.3s ease",
+              opacity: 0.85,
+              textShadow: "0 0 4px hsl(var(--primary) / 0.5), 0 0 10px hsl(var(--primary) / 0.2)",
+              transition: "all 0.4s ease",
             }}
           >
             {char}
