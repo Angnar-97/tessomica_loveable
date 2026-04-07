@@ -116,8 +116,9 @@ interface DNAStreamProps {
 const DNAStream = ({ stream, scrollYProgress }: DNAStreamProps) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -150 * stream.parallax]);
 
-  // Double the text so it can loop seamlessly
-  const doubledText = useMemo(() => `${stream.text}   ${stream.text}   ${stream.text}`, [stream.text]);
+  const doubledText = useMemo(() => `${stream.text}    ${stream.text}    ${stream.text}`, [stream.text]);
+
+  const goesRight = stream.dir === "right";
 
   return (
     <motion.div
@@ -125,9 +126,9 @@ const DNAStream = ({ stream, scrollYProgress }: DNAStreamProps) => {
       style={{ top: stream.y, y }}
     >
       <motion.div
-        className="font-mono whitespace-nowrap tracking-[0.35em] text-[10px] md:text-[12px]"
+        className="font-mono whitespace-nowrap tracking-[0.3em] text-[10px] md:text-[12px]"
         style={{ opacity: stream.opacity, color: "hsl(var(--primary))" }}
-        animate={{ x: ["0%", "-33.33%"] }}
+        animate={{ x: goesRight ? ["-33.33%", "0%"] : ["0%", "-33.33%"] }}
         transition={{
           x: {
             duration: stream.speed,
