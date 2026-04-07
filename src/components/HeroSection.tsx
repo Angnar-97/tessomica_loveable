@@ -1,19 +1,23 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect, useState, useCallback } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 // Horizontal DNA streams — Matrix-style flowing sequences
 const dnaStreams = [
-  { y: "5%", speed: 35, delay: 0, opacity: 0.12, text: "ATCGATCG ATGCTGAC TTAAGGCC CGTTAGGC ATCGATCG GCTAGCTA ATGCTGAC", parallax: 0.3, dir: "left" },
-  { y: "14%", speed: 48, delay: -7, opacity: 0.08, text: "GCTAGCTA GGCCTTAA AATTCCGG GCATGCAT TAGCTAGC ATCGATCG TTAAGGCC", parallax: 0.15, dir: "right" },
-  { y: "24%", speed: 28, delay: -3, opacity: 0.10, text: "TTAAGGCC ATGCTGAC CGTTAGGC GCTAGCTA AATTCCGG TTAAGGCC ATCGATCG", parallax: 0.25, dir: "left" },
-  { y: "36%", speed: 55, delay: -12, opacity: 0.07, text: ">rRNA_16S ATGCTGACCGTT  >ITS_region GGCCTTAAGGCC  >matK_gene ATCGATCGATCG", parallax: 0.1, dir: "right" },
-  { y: "48%", speed: 32, delay: -5, opacity: 0.11, text: "CGTTAGGC ATCGATCG GCTAGCTA TTAAGGCC ATGCTGAC AATTCCGG GCATGCAT", parallax: 0.35, dir: "left" },
-  { y: "60%", speed: 42, delay: -18, opacity: 0.09, text: "GGCCTTAA TAGCTAGC ATCGATCG CGTTAGGC ATGCTGAC GCTAGCTA TTAAGGCC", parallax: 0.2, dir: "right" },
-  { y: "72%", speed: 25, delay: -9, opacity: 0.10, text: "AATTCCGG GCATGCAT ATCGATCG TTAAGGCC GCTAGCTA CGTTAGGC ATGCTGAC", parallax: 0.28, dir: "left" },
-  { y: "82%", speed: 60, delay: -15, opacity: 0.07, text: "TAGCTAGC GGCCTTAA AATTCCGG GCATGCAT ATCGATCG TTAAGGCC CGTTAGGC", parallax: 0.18, dir: "right" },
-  { y: "42%", speed: 38, delay: -22, opacity: 0.08, text: "GCATGCAT ATGCTGAC CGTTAGGC TTAAGGCC GCTAGCTA AATTCCGG TAGCTAGC", parallax: 0.22, dir: "left" },
-  { y: "90%", speed: 45, delay: -10, opacity: 0.09, text: "ATGCTGAC GCTAGCTA TTAAGGCC ATCGATCG GGCCTTAA CGTTAGGC AATTCCGG", parallax: 0.12, dir: "right" },
+  { y: "3%", speed: 35, delay: 0, opacity: 0.18, text: "ATCGATCG ATGCTGAC TTAAGGCC CGTTAGGC ATCGATCG GCTAGCTA ATGCTGAC", parallax: 0.3, dir: "left" },
+  { y: "11%", speed: 48, delay: -7, opacity: 0.13, text: "GCTAGCTA GGCCTTAA AATTCCGG GCATGCAT TAGCTAGC ATCGATCG TTAAGGCC", parallax: 0.15, dir: "right" },
+  { y: "19%", speed: 28, delay: -3, opacity: 0.16, text: "TTAAGGCC ATGCTGAC CGTTAGGC GCTAGCTA AATTCCGG TTAAGGCC ATCGATCG", parallax: 0.25, dir: "left" },
+  { y: "27%", speed: 55, delay: -12, opacity: 0.11, text: ">rRNA_16S ATGCTGACCGTT  >ITS_region GGCCTTAAGGCC  >matK_gene ATCGATCGATCG", parallax: 0.1, dir: "right" },
+  { y: "35%", speed: 32, delay: -5, opacity: 0.17, text: "CGTTAGGC ATCGATCG GCTAGCTA TTAAGGCC ATGCTGAC AATTCCGG GCATGCAT", parallax: 0.35, dir: "left" },
+  { y: "43%", speed: 42, delay: -18, opacity: 0.14, text: "GGCCTTAA TAGCTAGC ATCGATCG CGTTAGGC ATGCTGAC GCTAGCTA TTAAGGCC", parallax: 0.2, dir: "right" },
+  { y: "51%", speed: 25, delay: -9, opacity: 0.15, text: "AATTCCGG GCATGCAT ATCGATCG TTAAGGCC GCTAGCTA CGTTAGGC ATGCTGAC", parallax: 0.28, dir: "left" },
+  { y: "59%", speed: 60, delay: -15, opacity: 0.11, text: "TAGCTAGC GGCCTTAA AATTCCGG GCATGCAT ATCGATCG TTAAGGCC CGTTAGGC", parallax: 0.18, dir: "right" },
+  { y: "67%", speed: 38, delay: -22, opacity: 0.13, text: "GCATGCAT ATGCTGAC CGTTAGGC TTAAGGCC GCTAGCTA AATTCCGG TAGCTAGC", parallax: 0.22, dir: "left" },
+  { y: "75%", speed: 45, delay: -10, opacity: 0.14, text: "ATGCTGAC GCTAGCTA TTAAGGCC ATCGATCG GGCCTTAA CGTTAGGC AATTCCGG", parallax: 0.12, dir: "right" },
+  { y: "83%", speed: 30, delay: -8, opacity: 0.16, text: "CGATCGAT TGACATGC GGCCTTAA GCCTTAGG CGATCGAT CTAGCTAG TGACATGC", parallax: 0.32, dir: "left" },
+  { y: "91%", speed: 52, delay: -20, opacity: 0.12, text: ">rbcL_gene GCTAGCTATTAA  >trnL_intron CCGGAATTCCGG  >psbA ATCGATCGATCG", parallax: 0.14, dir: "right" },
+  { y: "7%", speed: 40, delay: -14, opacity: 0.10, text: "TTAAGGCC GCTAGCTA ATCGATCG ATGCTGAC CGTTAGGC AATTCCGG GCATGCAT", parallax: 0.26, dir: "right" },
+  { y: "55%", speed: 33, delay: -6, opacity: 0.12, text: "GCATGCAT GGCCTTAA TAGCTAGC ATCGATCG TTAAGGCC ATGCTGAC CGTTAGGC", parallax: 0.19, dir: "left" },
 ];
 
 const HeroSection = () => {
@@ -46,7 +50,7 @@ const HeroSection = () => {
         style={{ opacity: dnaOpacity }}
       >
         {dnaStreams.map((stream, i) => (
-          <DNAStream key={i} stream={stream} scrollYProgress={scrollYProgress} />
+          <DNAStream key={i} stream={stream} scrollYProgress={scrollYProgress} index={i} />
         ))}
       </motion.div>
 
@@ -111,14 +115,67 @@ const HeroSection = () => {
 interface DNAStreamProps {
   stream: (typeof dnaStreams)[number];
   scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  index: number;
 }
 
-const DNAStream = ({ stream, scrollYProgress }: DNAStreamProps) => {
+const DNAStream = ({ stream, scrollYProgress, index }: DNAStreamProps) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -150 * stream.parallax]);
-
-  const doubledText = useMemo(() => `${stream.text}    ${stream.text}    ${stream.text}`, [stream.text]);
-
+  const tripleText = useMemo(() => `${stream.text}    ${stream.text}    ${stream.text}`, [stream.text]);
   const goesRight = stream.dir === "right";
+
+  // Glowing characters effect
+  const [glowIndices, setGlowIndices] = useState<Set<number>>(new Set());
+
+  const updateGlows = useCallback(() => {
+    const chars = tripleText.length;
+    const newGlows = new Set<number>();
+    // Pick 3-6 random characters to glow
+    const count = 3 + Math.floor(Math.random() * 4);
+    for (let i = 0; i < count; i++) {
+      const idx = Math.floor(Math.random() * chars);
+      if (tripleText[idx] !== ' ') {
+        newGlows.add(idx);
+      }
+    }
+    setGlowIndices(newGlows);
+  }, [tripleText]);
+
+  useEffect(() => {
+    // Stagger start per stream
+    const initialDelay = setTimeout(() => {
+      updateGlows();
+      const interval = setInterval(updateGlows, 1200 + index * 200);
+      return () => clearInterval(interval);
+    }, index * 300);
+    
+    const interval = setInterval(updateGlows, 1200 + index * 200);
+    return () => {
+      clearTimeout(initialDelay);
+      clearInterval(interval);
+    };
+  }, [updateGlows, index]);
+
+  const renderedText = useMemo(() => {
+    return tripleText.split("").map((char, i) => {
+      if (glowIndices.has(i)) {
+        return (
+          <span
+            key={i}
+            className="inline-block animate-pulse"
+            style={{
+              color: "hsl(var(--primary))",
+              opacity: 1,
+              textShadow: "0 0 8px hsl(var(--primary) / 0.8), 0 0 16px hsl(var(--primary) / 0.4)",
+              transition: "all 0.3s ease",
+            }}
+          >
+            {char}
+          </span>
+        );
+      }
+      return char;
+    });
+  }, [tripleText, glowIndices]);
 
   return (
     <motion.div
@@ -138,7 +195,7 @@ const DNAStream = ({ stream, scrollYProgress }: DNAStreamProps) => {
           },
         }}
       >
-        {doubledText}
+        {renderedText}
       </motion.div>
     </motion.div>
   );
