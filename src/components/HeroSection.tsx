@@ -1,57 +1,19 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const dnaColumns = [
-  {
-    text: "A T C G A T C G\nG C T A G C T A\nT T A A G G C C\nA T G C T G A C\nC G T T A A G G\nG G C C T T A A\nA T C G A T C G\nT A G C T A G C",
-    className: "top-[5%] left-[4%] text-[9px] md:text-[11px] text-primary/[0.06] tracking-widest",
-    animate: { y: [0, -40, 0] },
-    duration: 24,
-    parallaxSpeed: 0.3,
-  },
-  {
-    text: "G C T A\nA T C G\nT T A A\nG G C C\nC G T T\nA T G C",
-    className: "top-[18%] left-[22%] text-[8px] md:text-[10px] text-accent/[0.05] tracking-[0.3em]",
-    animate: { y: [15, -30, 15] },
-    duration: 20,
-    parallaxSpeed: 0.15,
-  },
-  {
-    text: "A  T  C  G\nC  G  A  T\nT  A  G  C\nG  C  T  A",
-    className: "top-[35%] left-[42%] text-[7px] md:text-[9px] text-primary/[0.04] tracking-[0.5em]",
-    animate: { y: [-10, 20, -10], opacity: [0.3, 0.6, 0.3] },
-    duration: 28,
-    parallaxSpeed: 0.1,
-  },
-  {
-    text: "T A G C\nC G A T\nA T C G\nG C T A\nT T A A\nG G C C",
-    className: "top-[12%] right-[20%] text-[8px] md:text-[10px] text-accent/[0.05] tracking-[0.25em]",
-    animate: { y: [-20, 25, -20] },
-    duration: 22,
-    parallaxSpeed: 0.25,
-  },
-  {
-    text: "C G T T A A\nG G C C T T\nA T C G A T\nG C T A G C\nT T A A G G\nC C G G T T\nA T G C T G",
-    className: "top-[3%] right-[3%] text-[9px] md:text-[11px] text-primary/[0.05] tracking-widest",
-    animate: { y: [10, -35, 10] },
-    duration: 26,
-    parallaxSpeed: 0.35,
-  },
-  {
-    text: "A T C G A T C G A T\nT A G C T A G C T A\nC G A T C G A T C G",
-    className: "bottom-[18%] left-[10%] text-[7px] md:text-[9px] text-primary/[0.04] tracking-[0.4em]",
-    animate: { x: [-8, 12, -8], y: [5, -10, 5] },
-    duration: 32,
-    parallaxSpeed: 0.2,
-  },
-  {
-    text: ">rRNA_16S\nATGCTGACCGTT\n>ITS_region\nGGCCTTAAGGCC",
-    className: "bottom-[22%] right-[6%] text-[8px] md:text-[10px] text-accent/[0.04] tracking-[0.2em]",
-    animate: { y: [12, -18, 12], x: [4, -4, 4] },
-    duration: 30,
-    parallaxSpeed: 0.28,
-  },
+// Horizontal DNA streams — Matrix-style flowing sequences
+const dnaStreams = [
+  { y: "6%", speed: 18, delay: 0, opacity: 0.07, text: "ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG", parallax: 0.3 },
+  { y: "14%", speed: 25, delay: -5, opacity: 0.05, text: "GCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTA", parallax: 0.15 },
+  { y: "24%", speed: 22, delay: -10, opacity: 0.06, text: "TTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCC", parallax: 0.25 },
+  { y: "38%", speed: 30, delay: -3, opacity: 0.04, text: "ATGCTGACATGCTGACATGCTGACATGCTGACATGCTGACATGCTGACATGCTGAC", parallax: 0.1 },
+  { y: "52%", speed: 20, delay: -8, opacity: 0.06, text: "CGTTAGGCCGTTAGGCCGTTAGGCCGTTAGGCCGTTAGGCCGTTAGGCCGTTAGGC", parallax: 0.35 },
+  { y: "64%", speed: 28, delay: -12, opacity: 0.05, text: "GGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAAGGCCTTAA", parallax: 0.2 },
+  { y: "76%", speed: 24, delay: -6, opacity: 0.04, text: ">rRNA_16S ATGCTGACCGTT >ITS_region GGCCTTAAGGCC >matK ATCGATCGATCG", parallax: 0.28 },
+  { y: "85%", speed: 32, delay: -15, opacity: 0.05, text: "TAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGC", parallax: 0.18 },
+  { y: "44%", speed: 26, delay: -9, opacity: 0.04, text: "AATTCCGGAATTCCGGAATTCCGGAATTCCGGAATTCCGGAATTCCGGAATTCCGG", parallax: 0.22 },
+  { y: "92%", speed: 21, delay: -4, opacity: 0.05, text: "GCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCAT", parallax: 0.12 },
 ];
 
 const HeroSection = () => {
@@ -60,6 +22,9 @@ const HeroSection = () => {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
+
+  // Fade out DNA as user scrolls
+  const dnaOpacity = useTransform(scrollYProgress, [0, 0.4, 0.7], [1, 0.6, 0]);
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -75,12 +40,15 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
 
-      {/* Floating DNA sequences with parallax — z-0 keeps them behind content */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 hidden sm:block">
-        {dnaColumns.map((col, i) => (
-          <ParallaxDNA key={i} col={col} scrollYProgress={scrollYProgress} />
+      {/* Horizontal flowing DNA streams with parallax + fade-out */}
+      <motion.div
+        className="absolute inset-0 overflow-hidden pointer-events-none z-0 hidden sm:block"
+        style={{ opacity: dnaOpacity }}
+      >
+        {dnaStreams.map((stream, i) => (
+          <DNAStream key={i} stream={stream} scrollYProgress={scrollYProgress} />
         ))}
-      </div>
+      </motion.div>
 
       {/* Content — z-10 stays above DNA */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
@@ -140,22 +108,36 @@ const HeroSection = () => {
   );
 };
 
-interface ParallaxDNAProps {
-  col: (typeof dnaColumns)[number];
+interface DNAStreamProps {
+  stream: (typeof dnaStreams)[number];
   scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
 }
 
-const ParallaxDNA = ({ col, scrollYProgress }: ParallaxDNAProps) => {
-  const y = useTransform(scrollYProgress, [0, 1], [0, -200 * col.parallaxSpeed]);
+const DNAStream = ({ stream, scrollYProgress }: DNAStreamProps) => {
+  const y = useTransform(scrollYProgress, [0, 1], [0, -150 * stream.parallax]);
+
+  // Double the text so it can loop seamlessly
+  const doubledText = useMemo(() => `${stream.text}   ${stream.text}   ${stream.text}`, [stream.text]);
 
   return (
-    <motion.div style={{ y }}>
+    <motion.div
+      className="absolute left-0 w-full"
+      style={{ top: stream.y, y }}
+    >
       <motion.div
-        className={`absolute font-mono whitespace-pre leading-loose ${col.className}`}
-        animate={col.animate}
-        transition={{ duration: col.duration, repeat: Infinity, ease: "easeInOut" }}
+        className="font-mono whitespace-nowrap tracking-[0.35em] text-[10px] md:text-[12px]"
+        style={{ opacity: stream.opacity, color: "hsl(var(--primary))" }}
+        animate={{ x: ["0%", "-33.33%"] }}
+        transition={{
+          x: {
+            duration: stream.speed,
+            repeat: Infinity,
+            ease: "linear",
+            delay: stream.delay,
+          },
+        }}
       >
-        {col.text}
+        {doubledText}
       </motion.div>
     </motion.div>
   );
