@@ -155,9 +155,47 @@ const DNAStream = ({ stream, scrollYProgress, index }: DNAStreamProps) => {
     };
   }, [updateGlows, index]);
 
+  // Identify gene label positions (e.g., >rRNA_16S, >matK_gene)
+  const labelRanges = useMemo(() => {
+    const ranges: [number, number][] = [];
+    const regex = />[a-zA-Z0-9_]+/g;
+    let match;
+    while ((match = regex.exec(tripleText)) !== null) {
+      ranges.push([match.index, match.index + match[0].length]);
+    }
+    return ranges;
+  }, [tripleText]);
+
+  const isInLabel = useCallback((idx: number) => {
+    return labelRanges.some(([start, end]) => idx >= start && idx < end);
+  }, [labelRanges]);
+
   const renderedText = useMemo(() => {
     return tripleText.split("").map((char, i) => {
-      if (glowIndices.has(i)) {
+      const inLabel = isInLabel(i);
+      const isGlowing = glowIndices.has(i);
+
+      if (inLabel) {
+        return (
+          <span
+            key={i}
+            className={isGlowing ? "inline-block animate-pulse" : undefined}
+            style={{
+              color: "hsl(var(--accent-foreground))",
+              opacity: isGlowing ? 1 : 0.9,
+              textShadow: isGlowing
+                ? "0 0 6px hsl(var(--accent-foreground) / 0.6), 0 0 12px hsl(142 70% 45% / 0.3)"
+                : "0 0 2px hsl(142 70% 45% / 0.2)",
+              fontWeight: 600,
+              transition: "all 0.4s ease",
+            }}
+          >
+            {char}
+          </span>
+        );
+      }
+
+      if (isGlowing) {
         return (
           <span
             key={i}
@@ -175,7 +213,7 @@ const DNAStream = ({ stream, scrollYProgress, index }: DNAStreamProps) => {
       }
       return char;
     });
-  }, [tripleText, glowIndices]);
+  }, [tripleText, glowIndices, isInLabel]);
 
   return (
     <motion.div
