@@ -4,20 +4,20 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 // Horizontal DNA streams — Matrix-style flowing sequences
 const dnaStreams = [
-  { y: "3%", speed: 35, delay: 0, opacity: 0.18, text: "ATCGATCG ATGCTGAC TTAAGGCC CGTTAGGC ATCGATCG GCTAGCTA ATGCTGAC", parallax: 0.3, dir: "left" },
-  { y: "11%", speed: 48, delay: -7, opacity: 0.13, text: "GCTAGCTA GGCCTTAA AATTCCGG GCATGCAT TAGCTAGC ATCGATCG TTAAGGCC", parallax: 0.15, dir: "right" },
-  { y: "19%", speed: 28, delay: -3, opacity: 0.16, text: "TTAAGGCC ATGCTGAC CGTTAGGC GCTAGCTA AATTCCGG TTAAGGCC ATCGATCG", parallax: 0.25, dir: "left" },
+  { y: "3%", speed: 35, delay: 0, opacity: 0.18, text: ">COX1_barcode ATCGATCGATGC  >nad5_mito TTAAGGCCCGTT  GCTAGCTA ATGCTGAC", parallax: 0.3, dir: "left" },
+  { y: "11%", speed: 48, delay: -7, opacity: 0.13, text: "GCTAGCTA GGCCTTAA >EF1a_gene AATTCCGGGCAT  TAGCTAGC ATCGATCG TTAAGGCC", parallax: 0.15, dir: "right" },
+  { y: "19%", speed: 28, delay: -3, opacity: 0.16, text: ">trnH_psbA TTAAGGCCATGC  CGTTAGGC GCTAGCTA >ndhF_chloro AATTCCGGTTAA", parallax: 0.25, dir: "left" },
   { y: "27%", speed: 55, delay: -12, opacity: 0.11, text: ">rRNA_16S ATGCTGACCGTT  >ITS_region GGCCTTAAGGCC  >matK_gene ATCGATCGATCG", parallax: 0.1, dir: "right" },
-  { y: "35%", speed: 32, delay: -5, opacity: 0.17, text: "CGTTAGGC ATCGATCG GCTAGCTA TTAAGGCC ATGCTGAC AATTCCGG GCATGCAT", parallax: 0.35, dir: "left" },
-  { y: "43%", speed: 42, delay: -18, opacity: 0.14, text: "GGCCTTAA TAGCTAGC ATCGATCG CGTTAGGC ATGCTGAC GCTAGCTA TTAAGGCC", parallax: 0.2, dir: "right" },
-  { y: "51%", speed: 25, delay: -9, opacity: 0.15, text: "AATTCCGG GCATGCAT ATCGATCG TTAAGGCC GCTAGCTA CGTTAGGC ATGCTGAC", parallax: 0.28, dir: "left" },
-  { y: "59%", speed: 60, delay: -15, opacity: 0.11, text: "TAGCTAGC GGCCTTAA AATTCCGG GCATGCAT ATCGATCG TTAAGGCC CGTTAGGC", parallax: 0.18, dir: "right" },
-  { y: "67%", speed: 38, delay: -22, opacity: 0.13, text: "GCATGCAT ATGCTGAC CGTTAGGC TTAAGGCC GCTAGCTA AATTCCGG TAGCTAGC", parallax: 0.22, dir: "left" },
-  { y: "75%", speed: 45, delay: -10, opacity: 0.14, text: "ATGCTGAC GCTAGCTA TTAAGGCC ATCGATCG GGCCTTAA CGTTAGGC AATTCCGG", parallax: 0.12, dir: "right" },
-  { y: "83%", speed: 30, delay: -8, opacity: 0.16, text: "CGATCGAT TGACATGC GGCCTTAA GCCTTAGG CGATCGAT CTAGCTAG TGACATGC", parallax: 0.32, dir: "left" },
+  { y: "35%", speed: 32, delay: -5, opacity: 0.17, text: "CGTTAGGC >cytB_mito ATCGATCGGCTA  TTAAGGCC >RAG1_nuclear ATGCTGACAATT", parallax: 0.35, dir: "left" },
+  { y: "43%", speed: 42, delay: -18, opacity: 0.14, text: ">18S_rRNA GGCCTTAATAGC  ATCGATCG CGTTAGGC >atpB_gene GCTAGCTATTAA", parallax: 0.2, dir: "right" },
+  { y: "51%", speed: 25, delay: -9, opacity: 0.15, text: "AATTCCGG >RPB2_gene GCATGCATATCG  TTAAGGCC GCTAGCTA >ycf1_plastid CGTTAGGC", parallax: 0.28, dir: "left" },
+  { y: "59%", speed: 60, delay: -15, opacity: 0.11, text: "TAGCTAGC >COX2_mito GGCCTTAAAATT  GCATGCAT ATCGATCG >trnL_UAA TTAAGGCC", parallax: 0.18, dir: "right" },
+  { y: "67%", speed: 38, delay: -22, opacity: 0.13, text: ">ITS2_spacer GCATGCATATGC  CGTTAGGC TTAAGGCC >rpoB_gene GCTAGCTAAATT", parallax: 0.22, dir: "left" },
+  { y: "75%", speed: 45, delay: -10, opacity: 0.14, text: "ATGCTGAC >nrITS_region GCTAGCTATTAA  ATCGATCG >accD_plastid GGCCTTAACGTT", parallax: 0.12, dir: "right" },
+  { y: "83%", speed: 30, delay: -8, opacity: 0.16, text: ">rRNA_28S CGATCGATTTAC  >H3_histone GGCCTTAAGCCT  CGATCGAT CTAGCTAG", parallax: 0.32, dir: "left" },
   { y: "91%", speed: 52, delay: -20, opacity: 0.12, text: ">rbcL_gene GCTAGCTATTAA  >trnL_intron CCGGAATTCCGG  >psbA ATCGATCGATCG", parallax: 0.14, dir: "right" },
-  { y: "7%", speed: 40, delay: -14, opacity: 0.10, text: "TTAAGGCC GCTAGCTA ATCGATCG ATGCTGAC CGTTAGGC AATTCCGG GCATGCAT", parallax: 0.26, dir: "right" },
-  { y: "55%", speed: 33, delay: -6, opacity: 0.12, text: "GCATGCAT GGCCTTAA TAGCTAGC ATCGATCG TTAAGGCC ATGCTGAC CGTTAGGC", parallax: 0.19, dir: "left" },
+  { y: "7%", speed: 40, delay: -14, opacity: 0.10, text: ">ND2_mito TTAAGGCCGCTA  ATCGATCG >GAPDH_gene ATGCTGACCGTT  AATTCCGG", parallax: 0.26, dir: "right" },
+  { y: "55%", speed: 33, delay: -6, opacity: 0.12, text: ">WNT1_gene GCATGCATGGCC  TAGCTAGC >rRNA_5.8S ATCGATCGTTAA  ATGCTGAC", parallax: 0.19, dir: "left" },
 ];
 
 const HeroSection = () => {
