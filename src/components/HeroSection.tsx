@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef, useMemo, useEffect, useState, useCallback } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -22,6 +22,7 @@ const dnaStreams = [
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -32,34 +33,38 @@ const HeroSection = () => {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
+      {/* Background image — stronger overlay ensures WCAG AA contrast for text on top */}
       <div className="absolute inset-0">
         <img
           src={heroBg}
-          alt="DNA helix with plant roots and genomic data"
+          alt=""
+          aria-hidden="true"
           width={1920}
           height={1080}
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-25"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
       </div>
 
-      {/* Horizontal flowing DNA streams with parallax + fade-out */}
-      <motion.div
-        className="absolute inset-0 overflow-hidden pointer-events-none z-0 hidden sm:block"
-        style={{ opacity: dnaOpacity }}
-      >
-        {dnaStreams.map((stream, i) => (
-          <DNAStream key={i} stream={stream} scrollYProgress={scrollYProgress} index={i} />
-        ))}
-      </motion.div>
+      {/* Horizontal flowing DNA streams — disabled when user prefers reduced motion */}
+      {!prefersReducedMotion && (
+        <motion.div
+          className="absolute inset-0 overflow-hidden pointer-events-none z-0 hidden sm:block"
+          style={{ opacity: dnaOpacity }}
+          aria-hidden="true"
+        >
+          {dnaStreams.map((stream, i) => (
+            <DNAStream key={i} stream={stream} scrollYProgress={scrollYProgress} index={i} />
+          ))}
+        </motion.div>
+      )}
 
       {/* Content — z-10 stays above DNA */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: prefersReducedMotion ? 0 : 1, ease: "easeOut" }}
         >
           <p className="font-mono text-sm tracking-[0.3em] text-primary mb-6 uppercase">
             Alejandro Navas González
