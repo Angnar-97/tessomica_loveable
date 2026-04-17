@@ -83,9 +83,9 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
+          transition={{ duration: prefersReducedMotion ? 0 : 1, delay: prefersReducedMotion ? 0 : 0.4 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <a
@@ -103,11 +103,12 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — static when reduced motion is preferred */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        animate={prefersReducedMotion ? undefined : { y: [0, 8, 0] }}
+        transition={prefersReducedMotion ? undefined : { duration: 2, repeat: Infinity }}
+        aria-hidden="true"
       >
         <div className="w-5 h-8 border border-primary/30 rounded-full flex justify-center pt-1.5">
           <div className="w-1 h-2 bg-primary rounded-full" />
